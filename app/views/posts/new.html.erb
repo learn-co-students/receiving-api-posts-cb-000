@@ -11,3 +11,25 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      event.preventDefault();
+      let values = $(this).serialize();
+      let posting = $.post('/posts', values);
+      
+      posting.done(function(data) {
+        let post = data;
+        $("#postTitle").text(post["title"]);
+        $("#postBody").text(post["description"]);  
+      }); 
+    });
+  });
+</script>
+
+#Purpose of this lab:
+# What we want to do is set it up so that we use this form, but use jQuery and AJAX to submit it, so that we can handle a JSON response and display the newly created blog post without redirecting to the post show page.
