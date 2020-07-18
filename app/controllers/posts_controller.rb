@@ -19,7 +19,8 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(post_params)
-    redirect_to post_path(@post)
+    # instead of responding with a redirect to the show page, conjure JSON object of the new post with the serializer:
+    render json: @post, status: 201
   end
 
   def edit
